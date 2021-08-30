@@ -21,7 +21,25 @@ function criarCobra() {
     }
 }
 
+document.addEventListener("keydown", update)
+
+function update(event){
+
+    if(event.keyCode == 37 && direction != "right") direction = "left";
+    if(event.keyCode == 38 && direction != "down") direction = "up";
+    if(event.keyCode == 39 && direction != "left") direction = "right";
+    if(event.keyCode == 40 && direction != "up") direction = "down" 
+
+}
+
 function iniciarJogo(){
+     if(snacke[0].x > 15*box && direction == "right") snacke[0].x = 0;
+     if(snacke[0].x <0 && direction == "left") snacke[0].x = 16 * box;
+     if(snacke[0].y > 15*box && direction == "down") snacke[0].y = 0;
+     if(snacke[0].y < 0 && direction == "up") snacke[0].y = 16 * box;
+
+
+
     criarBG();
     criarCobra();
 
@@ -34,7 +52,15 @@ function iniciarJogo(){
     if(direction == "down") snakeY +=box;
 
     snacke.pop();
+
+    let newHwad = {
+        x: snakeX,
+        y:snakeY
+    }
+
+    snacke.unshift(newHwad);
 }
 
-let jogo = setInterval(iniciarJogo, 100)
+let jogo = setInterval(iniciarJogo, 100);
+
 
