@@ -48,7 +48,12 @@ function iniciarJogo(){
      if(snacke[0].y > 15*box && direction == "down") snacke[0].y = 0;
      if(snacke[0].y < 0 && direction == "up") snacke[0].y = 16 * box;
 
-
+    for(i=1; i< snacke.length;i++){
+        if(snacke[0].x == snacke[i].x && snacke[0].y == snacke[i].y){
+            clearInterval(jogo);
+            alert('game over :(')
+        }
+    }
    
     criarBG();
     criarCobra();
