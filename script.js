@@ -49,9 +49,10 @@ function iniciarJogo(){
      if(snacke[0].y < 0 && direction == "up") snacke[0].y = 16 * box;
 
 
-    drawFood()
+   
     criarBG();
     criarCobra();
+    drawFood();
 
     let snakeX = snacke[0].x;
     let snakeY = snacke[0].y;
@@ -61,7 +62,15 @@ function iniciarJogo(){
     if(direction == "up") snakeY -=box;
     if(direction == "down") snakeY +=box;
 
-    snacke.pop();
+    if(snakeX != food.x || snakeY != food.y){
+        snacke.pop();
+    }
+    else {
+        food.x = Math.floor(Math.random() * 15 + 1) * box;
+        food.y =Math.floor(Math.random() * 15 +1) * box;
+    }
+
+
 
     let newHwad = {
         x: snakeX,
